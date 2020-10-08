@@ -2,8 +2,14 @@
 #include <string.h>
 
 #define MAX_SIZE 1024
+#define FILENAME "musicLibrary.txt"
 #define LOGERR(a) printf("ERROR: \t"); printf(a); printf("\n");
 #define LOGINFO(a) printf("INFO: \t"); printf(a); printf("\n");
+
+inline void myFlush(){
+	char ch;
+	while((ch=getchar())!= '\n' && ch!=EOF);
+}
 
 struct Song {
 	char title[MAX_SIZE];
@@ -33,19 +39,18 @@ private:
 	static MusicMgr mgr;//singleton instance
 	Song songs[MAX_SIZE];
 	int count = 0; //count of songs
+	FILE* fp = nullptr;//file handle
 
 public:
 	static MusicMgr& getInstance() {
 		return mgr;
 	}
-
 	void read_command();
 
 private:
 	MusicMgr(){}
 	void print_song(int index);//display song info in one line
 	void evaluate_command(char cmd);
-	void load_MusicLibrary(const char *fileName = "./defaultLibrary.txt");
 	void print_MusicLibrary(bool toFile = false);
 	//use when delete
 	void crunch_up_from_index(int index); 
@@ -56,9 +61,11 @@ private:
 	int find_proper_place_for_insert(Song& song);
 	bool remove_song_from_MusicLibrary_by_name(char *title);
 	bool add_song_to_MusicLibrary();
-	int write_song();
-	int read_song();
-	FILE* open_file(const char *fileName = "./defaultLibrary.txt");
+	//load the lib from a file
+	void load_MusicLibrary(const char *fileName = FILENAME);
+	//store the lib to a file
+	void store_MusicLibrary(const char *fileName = FILENAME);
+	FILE* open_file(const char *fileName = FILENAME, const char *mode = "r");
 
 };
 
@@ -74,6 +81,9 @@ void MusicMgr::print_song(int index){
 }
 
 void MusicMgr::read_command() {
+	//load
+	load_MusicLibrary();
+
 	//loop to read a valid command
 	char input;
 
@@ -88,7 +98,7 @@ void MusicMgr::read_command() {
 				evaluate_command(input);
 				break;
 			case 'Q':
-				//write_song();
+				store_MusicLibrary();
 				printf("Exiting, thanks for using\n");
 				return;
 			default:
@@ -96,7 +106,7 @@ void MusicMgr::read_command() {
 
 		}//switch
 
-		getchar();//flush the '\n'
+		myFlush();
 
 	}//while
 }
@@ -249,6 +259,59 @@ bool MusicMgr::add_song_to_MusicLibrary(){
 
 	return true;
 
+}
+
+FILE* MusicMgr::open_file(const char *fileName, const char *mode){
+	if(fp){
+		LOGINFO("closing file before open")
+		fclose(fp);
+		fp = nullptr;
+	}
+	if(nullptr == (fp = fopen(fileName,mode))){
+		LOGERR("cannot open file")
+	}
+	return fp;
+}
+
+void MusicMgr::load_MusicLibrary(const char *fileName){
+	fp = open_file(FILENAME, "r");
+	if (!fp){
+		LOGERR("unable to open file for load, nothing loaded")
+		return;
+	}
+	//1. read total num of songs
+	int num;
+	fscanf(fp,"%d",&num);
+	if (num<0 || num>MAX_SIZE){
+		LOGERR("invalid num of songs in this lib nothing loaded")
+		return;
+	}
+
+	//2. read title/artist/yop in order
+	for (int i=0; i<num; i++){
+		fscanf(fp,"%s",songs[i].title);
+		fscanf(fp,"%s",songs[i].artist);
+		fscanf(fp,"%d",&songs[i].year_published);
+	}
+	count = num;
+}
+
+void MusicMgr::store_MusicLibrary(const char *fileName){
+	fp = open_file(FILENAME,"w");
+	if (!fp){
+		LOGERR("unable to open file for store")
+		return;
+	}
+
+	//1. write the total num of songs to file
+	fprintf(fp,"%d\n",count);
+
+	//2. write title/artist/yop in order
+	for (int i=0; i<count; i++){
+		fprintf(fp, "%s\n", songs[i].title);
+		fprintf(fp, "%s\n", songs[i].artist);
+		fprintf(fp, "%d\n", songs[i].year_published);
+	}
 }
 
 int main(){
