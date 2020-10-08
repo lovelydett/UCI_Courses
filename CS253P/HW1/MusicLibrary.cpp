@@ -1,3 +1,9 @@
+/*
+Author: Yuting Xie
+Date:2020-10-8
+Description: 253P HW1
+*/ 
+
 #include <stdio.h>
 #include <string.h>
 
