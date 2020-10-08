@@ -130,7 +130,7 @@ void MusicMgr::evaluate_command(char cmd){
 			printf("Title:");
 			scanf("%s",title);
 			int index = find_index_of_song_with_name(title);
-			if(index>0 && index<count){
+			if(index>=0 && index<count){
 				print_song(index);
 			}else{
 				LOGERR("No such song with this title")
@@ -196,6 +196,7 @@ int MusicMgr::find_proper_place_for_insert(Song& song){
 	//song has been tested not in songs
 
 	//edge cases
+	if (0 == count) return 0;
 	if (songs[0]>song) return 0;
 	if (songs[count-1]<song) return count;
 
@@ -210,7 +211,9 @@ int MusicMgr::find_proper_place_for_insert(Song& song){
 		}
 	}
 
-	return songs[mid]>song ? mid-1 : mid+1;
+	//return songs[mid]>song ? mid-1 : mid+1;
+	//not mid-1 but mid, cuz mid will be crunch back
+	return songs[mid]>song ? mid : mid+1;
 }
 
 bool MusicMgr::remove_song_from_MusicLibrary_by_name(char *title){
@@ -313,6 +316,8 @@ void MusicMgr::store_MusicLibrary(const char *fileName){
 		fprintf(fp, "%d\n", songs[i].year_published);
 	}
 }
+
+
 
 int main(){
 	MusicMgr& mgr = MusicMgr::getInstance();
