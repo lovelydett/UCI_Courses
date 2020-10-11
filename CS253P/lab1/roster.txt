@@ -1,0 +1,40 @@
+			UC Irvine Office of the Registrar
+			        WebRoster Listing
+
+       IMPORTANT!  It is your responsibility to ensure confidentiality
+       of the student information below.  Further disclosure is
+       governed by Federal and State law and University policy, and
+       is prohibited without written consent of the student(s).  For
+       questions, contact Mark Fonseca (949/824-9672,
+       mark.fonseca@uci.edu) in the Office of the Registrar.
+
+Winter Quarter, 2020
+
+	RSN PROB GRAPH MODS      Course Code 34810
+	CompSci 253P, Sec. A, 4-unit Lecture
+	    Instructor: DECHTER, R.
+	    Time, Place: MW 11:00-12:20p, DBH 1200
+    Enrollment: 17 students (none with a FERPA privacy block)
+    Roster also viewable this term by this UCI NetID: PEZESHKB
+
+Student#	Name	Email	Major	Lvl	Opt	Notes
+57642296	PEZESHKI, BOBAK	ASDFSADF.EDU	CMPTSCI	G6	GR
+49967110	HOM, OMIMI	ERGERT@UCI.EDU	CMPTSCI	G5	GR
+25122498	CONG, M	ERTE@UCI.EDU	CMPTSCI	G5	GR
+30281787	WILL, KIM ROBEN	EGERG@UCI.EDU	CMPTSCI	G6	GR
+37164123	KIMI, JERIO	ABDFAB@UCI.EDU	CMPTSCI	G5	GR
+18881567	KLEFSTAD, RAY	YRJTY@UCI.EDU	CMPTSCI	G6	GR
+23642479	JOANG, MICHAEL	XDFHER@UCI.EDU	CMPTSCI	G6	GR
+51047248	JALLAL, BOB	WBDGF@UCI.EDU	CMPTSCI	G6	GR
+41006246	WIM, JOSH MARTIN	GBWREY@UCI.EDU	CMPTSCI	G5	GR
+95282896	LOMATI, JI-WON	VBWERY@UCI.EDU	CMPTSCI	G6	GR
+55191347	LENO, BRIAN	OPWER@UCI.EDU	MGMT	G6	GR
+26168567	KOMO, MOSO	XFGUKO@UCI.EDU	MCSB	G6	GR
+52928568	MOSHIL, ETHEL	ASDFSADF2@UCI.EDU	CMPTSCI	G5	GR
+88249348	PARRAM, CLAUDIO	NMWERY@UCI.EDU	CMPTSCI	G6	GR
+81887847	KILOO, KYU-SEON	SDFYUQER@UCI.EDU	DEV BIO	G6	GR
+78804863	YUNES, WONNIE	FDGI3R@UCI.EDU	SW ENGR	G5	GR
+24967795	TAVAKOLI, YASAMAN	SFJRJW34@UCI.EDU	CMPTSCI	G6	GR
+
+Total: 17 students listed above for this course on Thursday, Jan 9, 2020.
+	(17 enrolled with fees paid)
