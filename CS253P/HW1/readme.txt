@@ -1,0 +1,4 @@
+- use make command to make executable MusicLibrary
+- use ./MusicLibrary to run the program
+- MusicLibrary.txt is a file that already has some songs info stored in it, which will be automately load when the program begins, and will be re-stored when command 'Q' is passed by user.
+- If delete MusicLibrary.txt and run program, it will auto-gennerate this file and store songs when 'Q' passed.
