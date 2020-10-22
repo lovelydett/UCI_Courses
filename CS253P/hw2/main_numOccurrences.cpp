@@ -1,3 +1,9 @@
+/************************************************* 
+Author: tt
+Date:2020-10-19 
+Description: for problem2 in 253P HW2 
+**************************************************/ 
+
 #include<iostream>
 #include<vector>
 #include<string>
@@ -52,13 +58,20 @@ int numOccurrences(std::string& needle, std::string& haystack) {
 
     //find and count ocurrances one-by-one
     int count = 0, index = 0;
-    while (index < haystack.length()) {
-        haystack.assign(haystack, index+1, haystack.length() - index - 1);
-        index = KMP(needle, haystack, next);
-        if (-1 == index)
+    while (1) {
+        //find the next index where haystack[index] == needle[0]
+        while(index<haystack.length() && haystack[index]!=needle[0])
+            index++;
+
+        if(index==haystack.length()) 
             break;
-        else
-            count++;
+        
+        haystack.assign(haystack, index, haystack.length() - index);
+        if(-1 == (index = KMP(needle, haystack, next)))
+            break;
+        else{
+            count++, index++;
+        }
     }
 
     return count;

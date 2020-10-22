@@ -1,3 +1,9 @@
+/************************************************* 
+Author: tt
+Date:2020-10-19 
+Description: for problem4 in 253P HW2 
+**************************************************/ 
+
 #include<iostream>
 #include<string>
 #include<vector>
