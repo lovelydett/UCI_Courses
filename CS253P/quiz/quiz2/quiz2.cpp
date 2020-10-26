@@ -29,22 +29,15 @@ bool isPal(string& s, int L){
     return true;
 }
 
-//First find a palindrome, then find mirroring string pairs, lastly concatenate them.
+//First find mirroring string pairs, then find a palindrome in the middle, last concatenate them.
 string longestPal(vector<string>& strs, int L){
     string res("");
+    unordered_set<int> used;//stores strings' indexes been paired
 
-    for(auto s : strs)
-        if (isPal(s,L)){
-            res = s;
-            break;
-        }
-
-    // used stores those strings' indexes that have been paired
-    unordered_set<int> used;
-    for(int i=0 ; i<strs.size() && used.find(i)==used.end() ; i++){
-
+    for(int i=0 ; i<strs.size() ; i++){
+        if (used.find(i)!=used.end())
+            continue;
         for (int j=i+1; j<strs.size();j++){
-
             if(used.find(j)==used.end() && isMirror(strs[i],strs[j],L)){
                 res = strs[i]+res+strs[j];
                 used.insert(i);
@@ -52,20 +45,28 @@ string longestPal(vector<string>& strs, int L){
             }
         }
     }
-    
-    return res;
 
+    string mid;
+    for(int i=0 ; i<strs.size(); i++)
+        if (used.find(i)==used.end() && isPal(strs[i],L)){
+            mid = strs[i]; //find a palindrome as middle
+            break;
+        }
+
+    //concanate them
+    res = res.substr(0,(res.length())/2)+mid+res.substr(res.length()/2,res.length()/2); 
+    return res;
 }
 
 int main(){
     
     vector<string> strs;
 
-    strs.push_back("aaa");
-    strs.push_back("xyz");
-    strs.push_back("zyx");
+    // strs.push_back("aaa");
+    // strs.push_back("aaa");
     strs.push_back("bbb");
-    strs.push_back("abc");
+    strs.push_back("xyz");
+    //strs.push_back("zyx");
     strs.push_back("def");
 
     std::cout<<"result: "<<longestPal(strs,3)<<std::endl;
