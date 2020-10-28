@@ -1,3 +1,9 @@
+/*************************************************
+Author: Yuting Xie
+Date:2020-10-26
+Description: for 253P LAB3: Nested Parentheses
+**************************************************/
+
 #include <cstdio>
 #include <string>
 #include <stack>
