@@ -27,12 +27,12 @@ int doalg(int n, int k, int Best[]){
         }
     }
 
-    //4. Order the results descendingly
+    //4. Order the results descendingly: swap the top to the back, heap size minus one, and adjust
     for(int i=k-1; i>=1; i-=1){
-        swap(Best, Best+i);
+        swap(Best, Best+i); 
         siftDown(Best, i, 0);
     }
-    
+
     return 1;
 }
 
