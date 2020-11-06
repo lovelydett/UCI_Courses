@@ -487,7 +487,7 @@ print
 current
 delete
 print
-changeTo Song Title A [Author A]
+changeTo Song Title D [Author D]
 current
 print
 find Song Title C [Author C]
